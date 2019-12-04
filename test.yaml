@@ -1,0 +1,14 @@
+name: TEST
+inputs:
+  - format: FASTA
+    aligned: TRUE
+    file: woodmouse.fasta
+  - format: FASTA
+    aligned: TRUE
+    file: H1N1_PB2.fasta
+distances:
+  - method: K80
+    output: TXT
+  - method: JC
+    output: TXT
+
