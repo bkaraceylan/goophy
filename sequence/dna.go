@@ -10,11 +10,13 @@ import (
 	conf "github.com/bkaraceylan/anidea/config"
 )
 
+//DNA represents a single dna sequence
 type DNA struct {
 	Id  string
 	Seq string
 }
 
+//DNAPool represents a group of dna sequences whether aligned or not.
 type DNAPool struct {
 	Name        string
 	Samples     []DNA
@@ -24,80 +26,80 @@ type DNAPool struct {
 	AlignMethod string
 }
 
-//Returns total number of bases
-func (dna DNA) NumBases() int {
+//NumBases returns the total number of bases in a sequence.
+func (dna *DNA) NumBases() int {
 	return len(dna.Seq)
 }
 
-//Returns total number of purines
-func (dna DNA) NumPurines() int {
+//NumPurines returns the total number of purines in a sequence.
+func (dna *DNA) NumPurines() int {
 	purines := 0
 
 	for _, base := range dna.Seq {
 		if isPurine(base) {
-			purines += 1
+			purines++
 		}
 	}
 
 	return purines
 }
 
-//Returns total number of pyrimidines
+//NumPyrimidines returns the total number of pyrimidines in a sequence.
 func (dna DNA) NumPyrimidines() int {
 	pyrmidine := 0
 
 	for _, base := range dna.Seq {
 		if isPyrimidine(base) {
-			pyrmidine += 1
+			pyrmidine++
 		}
 	}
 
 	return pyrmidine
 }
 
-//Returns true if not one of ATCG
+//IsNuc returns true if one of ATCG
 func IsNuc(base rune) bool {
 	bases := "ATGC"
 	return strings.ContainsRune(bases, unicode.ToUpper(base))
 }
 
-//Returns true if the base is purine
+//isPurine returns true if the base is a purine
 func isPurine(base rune) bool {
 	if base == 'A' || base == 'G' {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
-//Returns true if the base is pyrimidine
+//isPyrimidne returns true if the base is a pyrimidine.
 func isPyrimidine(base rune) bool {
 	if base == 'C' || base == 'T' {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
-//Returns true if the change between bases is a transition
+//IsTransition returns true if the change between bases is a transition.
 func IsTransition(base1 rune, base2 rune) bool {
 	if (isPurine(base1) && isPurine(base2)) || (isPyrimidine(base1) && isPyrimidine(base2)) {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
-//Returns true if the change between bases is a transversion
+//IsTransversion returns true if the change between bases is a transversion.
 func IsTransversion(base1 rune, base2 rune) bool {
 	if (isPurine(base1) && isPyrimidine(base2)) || (isPyrimidine(base1) && isPurine(base2)) {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
-//Returns number of nucleotides, number of differences, number of transitions and number of transversions
+//ComputeTrans returns the number of nucleotides, the number of differences, the number of transitions and the number of transversions.
 func ComputeTrans(dna1 DNA, dna2 DNA) (int, int, int, int) {
 	seq1 := dna1.Seq
 	seq2 := dna2.Seq
@@ -131,7 +133,7 @@ func ComputeTrans(dna1 DNA, dna2 DNA) (int, int, int, int) {
 	return numnuc, numdiff, ts, tv
 }
 
-//Given a DNAPool returns an aligned DNAPool
+//Align aligns the sequences in a DNAPool
 func Align(pool DNAPool, method string, conf *conf.Config) DNAPool {
 	var aligned DNAPool
 	switch method {
@@ -145,7 +147,7 @@ func Align(pool DNAPool, method string, conf *conf.Config) DNAPool {
 	return aligned
 }
 
-//Executes clustalw on a file
+//clustalw executes clustalw on a file.
 func clustalw(file string, exe string) bool {
 	infile := fmt.Sprintf("-infile=%s", file)
 

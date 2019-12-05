@@ -10,6 +10,7 @@ import (
 	"unicode"
 )
 
+//ReadDNA reads a sequence file from the disk.
 func ReadDNA(path string, format string, aligned bool) DNAPool {
 	var dna DNAPool
 	switch format {
@@ -24,6 +25,7 @@ func ReadDNA(path string, format string, aligned bool) DNAPool {
 	return dna
 }
 
+//SpaceMap removes whitespaces from a string.
 func SpaceMap(str string) string {
 	return strings.Map(func(r rune) rune {
 		if unicode.IsSpace(r) {
@@ -33,6 +35,7 @@ func SpaceMap(str string) string {
 	}, str)
 }
 
+//Fasta parses fasta formatted files.
 func Fasta(path string) DNAPool {
 
 	var samples []DNA

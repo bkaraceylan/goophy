@@ -8,6 +8,7 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
+//PrettyPrintDist prints a distance matrix to the stdout in a nice table format.
 func PrettyPrintDist(dmat DistMat) {
 	var table *tablewriter.Table
 
@@ -30,6 +31,7 @@ func PrettyPrintDist(dmat DistMat) {
 	table.Render()
 }
 
+//PrettySaveDist saves a distance matrix in the disk in a nice table format.
 func PrettySaveDist(dmat DistMat, path string, name string) {
 	var table *tablewriter.Table
 	path = filepath.Join(path, name+".txt")

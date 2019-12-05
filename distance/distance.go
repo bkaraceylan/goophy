@@ -8,12 +8,14 @@ import (
 	seq "github.com/bkaraceylan/anidea/sequence"
 )
 
+//DistMat is a distance matrix structure
 type DistMat struct {
 	Ids    []string
 	Matrix [][]float64
 	Method string
 }
 
+//PDist calculates p-distance between two sequences
 func PDist(dna1 seq.DNA, dna2 seq.DNA) float64 {
 	seq1 := dna1.Seq
 	seq2 := dna2.Seq
@@ -40,14 +42,16 @@ func PDist(dna1 seq.DNA, dna2 seq.DNA) float64 {
 	return (float64(numdiff) / float64(numnuc))
 }
 
+//JCDist calculates Jukes-Cantor distance between two sequences
 func JCDist(dna1 seq.DNA, dna2 seq.DNA) float64 {
-	p_dist := PDist(dna1, dna2)
-	pow := math.Log(float64(1 - (1.3333 * p_dist)))
+	pDist := PDist(dna1, dna2)
+	pow := math.Log(float64(1 - (1.3333 * pDist)))
 	dist := -0.75 * pow
 
 	return dist
 }
 
+//K80Dist calculates Kimure-Nei distance between two sequences
 func K80Dist(dna1 seq.DNA, dna2 seq.DNA) float64 {
 	len, _, ts, tv := seq.ComputeTrans(dna1, dna2)
 
@@ -62,6 +66,7 @@ func K80Dist(dna1 seq.DNA, dna2 seq.DNA) float64 {
 	return dist
 }
 
+//PairDist calculates pairwise distances between all sequences in a DNAPool using the specified method (OLD).
 func PairDist(pool seq.DNAPool, method string) DistMat {
 	var result [][]float64
 	dmat := DistMat{}
@@ -104,6 +109,7 @@ type seqJob struct {
 	model string
 }
 
+//PairDistConc concurrently calculates the pairwise distances betwen all sequences in a DNAPool using the specified method.
 func PairDistConc(pool seq.DNAPool, model string) DistMat {
 	dmat := DistMat{}
 	dmat.Matrix = make([][]float64, len(pool.Samples))
@@ -130,14 +136,14 @@ func PairDistConc(pool seq.DNAPool, model string) DistMat {
 
 	for w := 1; w <= 10; w++ {
 		wg.Add(1)
-		go PairDistWorker(chann, &wg)
+		go pairDistWorker(chann, &wg)
 	}
 
 	wg.Wait()
 	return dmat
 }
 
-func PairDistWorker(seqjob <-chan seqJob, wg *sync.WaitGroup) {
+func pairDistWorker(seqjob <-chan seqJob, wg *sync.WaitGroup) {
 	var dist float64
 	defer wg.Done()
 
