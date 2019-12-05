@@ -10,7 +10,7 @@ func main() {
 	//var config *conf.Config
 	//config = conf.LoadConfig()
 
-	samples := sequence.ReadDNA("./H1N1_PB2.fasta", "FASTA", true)
+	samples := sequence.ReadDNA("./data/H1N1_PB2.fasta", "FASTA", true)
 
 	// fmt.Printf("%v \n", len(samples.Samples))
 	// for _, sample := range samples.Samples {
