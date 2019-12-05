@@ -2,12 +2,14 @@ package tree
 
 import "fmt"
 
+//Tree is the structure holding a pylogenetic tree
 type Tree struct {
 	Name      string
 	NodeTable map[string]*Node
 	Root      *Node
 }
 
+//Node is a single node on a tree
 type Node struct {
 	Label       string
 	Lenght      float64
@@ -15,35 +17,40 @@ type Node struct {
 	ParentLabel string
 }
 
-func (tr *Tree) Add(label string, length float64, parentLabel string) {
+//Add is a method that adds a node to a tree
+func (tr *Tree) Add(label string, length float64, parentlabel string) *Node {
 	//fmt.Printf("add: label=%v length=%v parentLabel=%v\n", label, length, parentLabel)
 
-	node := &Node{Label: label, Lenght: length, Children: []*Node{}, ParentLabel: parentLabel}
+	node := &Node{Label: label, Lenght: length, Children: []*Node{}, ParentLabel: parentlabel}
 
-	parent, ok := tr.NodeTable[parentLabel]
+	parent, ok := tr.NodeTable[parentlabel]
 	if !ok {
-		fmt.Printf("add: parentLabel=%v: not found\n", parentLabel)
-		return
-	} else {
-		parent.Children = append(parent.Children, node)
+		return nil
 	}
 
+	parent.Children = append(parent.Children, node)
+
 	tr.NodeTable[label] = node
+
+	return node
 }
 
+//GetChildren returns all children of a node
 func (tr *Tree) GetChildren(label string) []*Node {
 	node := tr.NodeTable[label]
 	return node.Children
 }
 
+//IsRooted returns true if the root node has two children.
 func (tr *Tree) IsRooted() bool {
 	if len(tr.Root.Children) == 2 {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
+//Print method prints a phylogenetic tree to stdout.
 func (tr *Tree) Print() {
 	if tr.Root == nil {
 		fmt.Printf("show: root node not found\n")
@@ -63,11 +70,12 @@ const _space string = "   "
 const _root string = "─┐"
 const _foo string = " ┌─"
 
+//PrintNode recursively prints nodes to stdout
 func PrintNode(node *Node, indent string, isLast bool, isFirst bool) {
 	fmt.Printf("%s", indent)
 
 	isRoot := (node.Label == "root")
-	isParentRoot := (node.ParentLabel == "root")
+	//isParentRoot := (node.Parent != nil)
 
 	if isLast {
 		if !isRoot {
@@ -75,12 +83,7 @@ func PrintNode(node *Node, indent string, isLast bool, isFirst bool) {
 			indent += _space
 		}
 	} else {
-		if isParentRoot && isFirst {
-			fmt.Printf("%s", _foo)
-		} else {
-			fmt.Printf("%s", _cross)
-		}
-
+		fmt.Printf("%s", _cross)
 		indent += _vertical
 	}
 
@@ -98,18 +101,20 @@ func PrintNode(node *Node, indent string, isLast bool, isFirst bool) {
 
 }
 
+//IsLeaf returns true if the node doesn't have any children
 func (node Node) IsLeaf() bool {
 	if len(node.Children) == 0 {
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
 // func (node Node) IsRoot() bool {
 // 	node.ParentLabel == "top"
 // }
 
+//CreateTree initializes a tree.
 func CreateTree(name string) *Tree {
 	tree := new(Tree)
 	tree.NodeTable = map[string]*Node{}
