@@ -9,9 +9,13 @@ Goophy is a simple phylogenetic analysis tool written in golang.
 ./goophy ./data/test.yaml
 ```
 
-Goophy takes a [project](./data/test.yaml) file in yaml format as input.
+Goophy takes a [project](./data/test.yaml) file in yaml format as input, iteratively performs analyzes specified in the project and produces outputs.
 
 A project consists of three lists: inputs, distances and trees.
+
+All distance analyzes in the project are performed on all inputs in the project, and all tree building methods in the project are performed using the results of all distance analyzes.
+
+A new folder with the project name and current date as suffix is created in the same directory as the project file. If outputs are specified in the project file, results of distance analyzes are saved into the "Distance" folder and trees are saved into the "Trees" folder.
 
 Currently only a limited set of formats and analyzes are supported.
 
@@ -31,6 +35,13 @@ Or to run without building:
 ```
 go run main.go
 ```
+## ToDo
+
+* Replace quick fixes with real fixes.
+* Tidy up the code.
+* Redo things in smarter ways.
+* Add more analyzes.
+
 ## Authors
 
 * **Burak Karaceyln** - [bkaraceylan](https://github.com/bkaraceylan)
