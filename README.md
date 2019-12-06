@@ -35,7 +35,7 @@ Or to run without building:
 ```
 go run main.go
 ```
-## ToDo
+## TODO
 
 * Replace quick fixes with real fixes.
 * Tidy up the code.
@@ -44,7 +44,7 @@ go run main.go
 
 ## Authors
 
-* **Burak Karaceyln** - [bkaraceylan](https://github.com/bkaraceylan)
+* **Burak Karaceylan** - [bkaraceylan](https://github.com/bkaraceylan)
 
 ## License
 
