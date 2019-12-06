@@ -66,6 +66,7 @@ func (project *Project) RunProject() {
 
 	if err != nil {
 		fmt.Printf("Error creating project directory %s\n", err)
+		return
 	}
 
 	project.Directory = dir

@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/bkaraceylan/anidea/project"
+	"github.com/bkaraceylan/goophy/project"
 )
 
 func main() {

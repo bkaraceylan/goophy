@@ -5,7 +5,7 @@ import (
 	"math"
 	"sync"
 
-	seq "github.com/bkaraceylan/anidea/sequence"
+	seq "github.com/bkaraceylan/goophy/sequence"
 )
 
 //DistMat is a distance matrix structure

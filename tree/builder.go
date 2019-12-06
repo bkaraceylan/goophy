@@ -3,7 +3,7 @@ package tree
 import (
 	"fmt"
 
-	"github.com/bkaraceylan/anidea/distance"
+	"github.com/bkaraceylan/goophy/distance"
 )
 
 type Input struct {

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unicode"
 
-	conf "github.com/bkaraceylan/anidea/config"
+	conf "github.com/bkaraceylan/goophy/config"
 )
 
 //DNA represents a single dna sequence

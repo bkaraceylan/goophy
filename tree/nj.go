@@ -3,7 +3,7 @@ package tree
 import (
 	"fmt"
 
-	dist "github.com/bkaraceylan/anidea/distance"
+	dist "github.com/bkaraceylan/goophy/distance"
 )
 
 //NJ creates an evolutionary tree from a distance matrix using neighbor-joining algorithm.
