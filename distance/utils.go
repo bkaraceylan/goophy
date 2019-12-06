@@ -1,6 +1,7 @@
 package distance
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -35,7 +36,7 @@ func PrettyPrintDist(dmat DistMat) {
 func PrettySaveDist(dmat DistMat, path string, name string) {
 	var table *tablewriter.Table
 	path = filepath.Join(path, name+".txt")
-	//fmt.Println(path)
+	fmt.Println(path)
 	file, _ := os.Create(path)
 	defer file.Close()
 	table = tablewriter.NewWriter(file)

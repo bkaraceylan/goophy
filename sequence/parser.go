@@ -82,8 +82,9 @@ func Fasta(path string) DNAPool {
 	}
 
 	pool := DNAPool{}
-	pool.Name = file.Name()
-	pool.File, _ = filepath.Abs(filepath.Dir(file.Name()))
+	pool.Name = filepath.Base(file.Name())
+	pool.Name = strings.TrimSuffix(pool.Name, filepath.Ext(pool.Name))
+	pool.File = file.Name()
 	pool.Samples = samples
 	pool.Format = "fasta"
 

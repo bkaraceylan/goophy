@@ -37,16 +37,12 @@ func NJ(distmat dist.DistMat) *Tree {
 		tree.AddChild(node, node3)
 
 		recalMatrix(&distmat, minqcoord[0], minqcoord[1], intlbl)
-		//dist.PrettyPrintDist(distmat)
 	}
 
 	l1 := distmat.Ids[0]
 	l2 := distmat.Ids[1]
-	//intlbl := fmt.Sprintf("int_%d", len(intnodes))
 	v1 := sumArray(distmat.Matrix[0]) / 2
 	v2 := sumArray(distmat.Matrix[1]) / 2
-	//node := tree.AddNode(intlbl, 0, "root")
-	//intnodes = append(intnodes, node)
 	node2 := tree.GetNode(l1)
 	node2.SetLength(v1)
 	node3 := tree.GetNode(l2)
@@ -56,8 +52,6 @@ func NJ(distmat dist.DistMat) *Tree {
 	tree.AdoptChildren(root, node2)
 	tree.RemoveNode(node2)
 	tree.AddChild(root, node3)
-
-	//tree.NewRoot(node)
 
 	return tree
 }

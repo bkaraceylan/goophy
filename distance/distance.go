@@ -10,9 +10,10 @@ import (
 
 //DistMat is a distance matrix structure
 type DistMat struct {
-	Ids    []string
-	Matrix [][]float64
-	Method string
+	Ids       []string
+	Matrix    [][]float64
+	Method    string
+	Alignment *seq.DNAPool
 }
 
 //PDist calculates p-distance between two sequences
@@ -70,6 +71,8 @@ func K80Dist(dna1 seq.DNA, dna2 seq.DNA) float64 {
 func PairDist(pool seq.DNAPool, method string) DistMat {
 	var result [][]float64
 	dmat := DistMat{}
+	dmat.Alignment = &pool
+	dmat.Method = method
 
 	for _, dna1 := range pool.Samples {
 		var row []float64
@@ -112,6 +115,8 @@ type seqJob struct {
 //PairDistConc concurrently calculates the pairwise distances betwen all sequences in a DNAPool using the specified method.
 func PairDistConc(pool seq.DNAPool, model string) DistMat {
 	dmat := DistMat{}
+	dmat.Alignment = &pool
+	dmat.Method = model
 	dmat.Matrix = make([][]float64, len(pool.Samples))
 	chann := make(chan seqJob, 100)
 

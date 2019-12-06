@@ -11,4 +11,6 @@ distances:
     output: TXT
   - method: JC
     output: TXT
-
+trees:
+  - method: NJ
+    output: NEWICK
