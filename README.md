@@ -15,9 +15,9 @@ A project consists of three lists: inputs, distances and trees.
 
 Currently only a limited set of formats and analyzes are supported.
 
-* Inputs: Only DNA sequences in FASTA format.
-* Distances: Jukes-Cantor and Kimura-2-parameter distances (w/o gamma distribution). Can output pretty tables in ascii to STDOUT or a file.
-* Trees: Only Neighbor-Joining algorithm is supported. Can print to STDOUT in ascii or write to a file in NEWICK format.
+* **Inputs**: Only DNA sequences in FASTA format.
+* **Distances**: Jukes-Cantor and Kimura-2-parameter distances (w/o gamma distribution). Can output pretty tables in ascii to STDOUT or a file.
+* **Trees**: Only Neighbor-Joining algorithm is supported. Can print to STDOUT in ascii or write to a file in NEWICK format.
 
 ### Building
 
@@ -31,7 +31,9 @@ Or to run without building:
 ```
 go run main.go
 ```
-* **Burak Karaceyln** - *Initial work* - [bkaraceylan](https://github.com/bkaraceylan)
+## Authors
+
+* **Burak Karaceyln** - [bkaraceylan](https://github.com/bkaraceylan)
 
 ## License
 
