@@ -8,9 +8,9 @@ inputs:
     file: H1N1_PB2.fasta
 distances:
   - method: K80
-    output: TXT
+    #output: TXT
   - method: JC
-    output: TXT
+    #output: TXT
 trees:
   - method: NJ
-    output: NEWICK
+    #output: NEWICK

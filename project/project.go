@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"time"
 
-	dist "github.com/bkaraceylan/anidea/distance"
-	seq "github.com/bkaraceylan/anidea/sequence"
-	"github.com/bkaraceylan/anidea/tree"
+	dist "github.com/bkaraceylan/goophy/distance"
+	seq "github.com/bkaraceylan/goophy/sequence"
+	"github.com/bkaraceylan/goophy/tree"
 	yaml "gopkg.in/yaml.v2"
 )
 
