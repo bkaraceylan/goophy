@@ -13,11 +13,11 @@ Goophy takes a [project](./data/test.yaml) file in yaml format as input, iterati
 
 A project consists of three lists: inputs, distances and trees.
 
-All distance analyzes in the project are performed on all inputs in the project, and all tree building methods in the project are performed using the results of all distance analyzes.
+All distance analyses in the project are performed on all inputs in the project, and all tree building methods in the project are performed using the results of all distance analyses.
 
-A new folder with the project name and current date as suffix is created in the same directory as the project file. If outputs are specified in the project file, results of distance analyzes are saved into the "Distance" folder and trees are saved into the "Trees" folder.
+A new folder with the project name and current date as suffix is created in the same directory as the project file. If outputs are specified in the project file, results of distance analyses are saved into the "Distance" folder and trees are saved into the "Trees" folder.
 
-Currently only a limited set of formats and analyzes are supported.
+Currently only a limited set of formats and analyses are supported.
 
 * **Inputs**: Only DNA sequences in FASTA format.
 * **Distances**: Jukes-Cantor and Kimura-2-parameter distances (w/o gamma distribution). Can output pretty tables in ascii to STDOUT or a file.
